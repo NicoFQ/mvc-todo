@@ -5,12 +5,17 @@
 
 	// Raiz del proyecyo independiente de donde se despliegue la aplicacion.
 	define('ROOT', dirname(dirname(__FILE__)));
+	define('VIEW_ROOT', ROOT.DS."resources".DS);
 
 	require(ROOT.DS."src".DS."init.php");
-
+/*
 	echo Config::get('site.name');
 	echo "<br>";
-	echo Config::get('db.host');
+	echo "Pedidio: <br>";
+	echo $_SERVER['REQUEST_URI']; 
+	$enrutador = new Router($_SERVER['REQUEST_URI']);*/
+	//print_r($enrutador);
+	App::run($_SERVER['REQUEST_URI']);
 
 
- ?>
+?>
