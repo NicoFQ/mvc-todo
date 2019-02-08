@@ -1,4 +1,6 @@
 <?php 
+	
+	//php -a -d auto_prepend_file=bin/shell_autoload.php
 
 	// Ayuda a que funcione en Windows y en Linux
 	define('DS', DIRECTORY_SEPARATOR); 
@@ -8,7 +10,4 @@
 	define('VIEW_ROOT', ROOT.DS."resources".DS);
 
 	require(ROOT.DS."src".DS."init.php");
-
-	App::run($_SERVER['REQUEST_URI']);
-
-?>
+ ?>

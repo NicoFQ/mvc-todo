@@ -29,6 +29,9 @@
 			// noticias/listado
 			// noticias/listado/
 			$this->uri = $uri;
+			if ($uri == "/") {
+				$this->redirect(Config::get('ruta.defecto'));
+			}
 			$urlProcesada = trim($uri, "/");
 			$urlProcesada = explode('?', $urlProcesada);
 			$urlProcesada = trim($urlProcesada[0], '/');
@@ -43,16 +46,13 @@
 				if (current($urlPartes)) {
 					$this->accion = array_shift($urlPartes);
 				}
-
-				
-				// Obtengo parametros
-				if (current($urlPartes)) {
-					$this->params = array_shift($urlPartes);
-				}
-
 				$this->params = $urlPartes;
 			}
 
+		}
+		public function redirect($url){
+			header("Location: $url");
+			die();
 		}
 	}
 

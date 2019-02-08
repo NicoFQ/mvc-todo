@@ -11,6 +11,15 @@
 				'noticia2',
 				'noticia3',
 			];
+			//ModelNoticias::getNoticias();
+			//ModelNoticias::getNoticiasPublicadas();
+			//$noticia = ModelNoticias::getById(47);
+			//$noticia = ModelNoticias::getLastByAuthor('Nico');
+			$noticia = new ModelNoticia();
+			$noticia->setTitulo('Lanzamiendo de mi MVC');
+			//$noticia->setAuthor(1);
+			//$noticia->getContent();
+			$noticia->save();
 		}
 
 		public function show($id){
@@ -19,10 +28,10 @@
 				'noticia2',
 				'noticia3',
 			];
-			$this->data = [$datosModelo[$id]];
-
+			$this->data['titulo'] = 'algo';
+			$this->data['id'] = $id;
+			$this->data['contenido'] = $datosModelo[$id];
 		}
-			
 	}
 
  ?>

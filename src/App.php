@@ -1,18 +1,24 @@
-<?php 
-	
-	/**
-	 * Esta clase representará
-	 */
+<?php 	
 	class App
 	{
 		private static $enrutador;
+		private static $db;
 
 		public static function getRouter(){
 			return self::$enrutador;
 		}
+		public static function getDB(){
+			return self::$db;
+		}
+		public static function initDB(){
+			$credenciales = array(Config::get('db.user'), Config::get('db.pass'), Config::get('db.name'));
+			self::$db = new DB(...$credenciales);
+			print_r(self::$db);
+		}
 
 		public static function run($uri){
 			self::$enrutador = new Router($uri);
+			self::initDB();
 			$controlador = self::$enrutador->getControlador();
 			$accion = self::$enrutador->getAccion();
 			$params = self::$enrutador->getParams();

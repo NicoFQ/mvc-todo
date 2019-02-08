@@ -15,11 +15,12 @@ class BaseController
 
 	public function procesaAccion(string $metodo, $parametros){
 		// Esta funcion rellenará los datos;
+		//print_r($parametros);
 		$this->$metodo(...$parametros);
-
-		$salida = "<h1>Salida general</h1>";
-		$salida .= implode('-', $this->data);
-		return $salida;
+		$vista = new View();
+		//$salida = "<h1>Salida general</h1>";
+		//$salida .= implode('-', $this->data);
+		return $vista->render($this->data);
 	}
 }
 
