@@ -2,7 +2,8 @@
 	class BaseModel
 	{
 		protected $db;
-		function __construct() { $this->db = App::getDB(); }
+		protected $info_list;
+		function __construct() { $this->db = App::getDB(); $this->info_list = [];}
 	}
 
 
