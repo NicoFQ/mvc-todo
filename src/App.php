@@ -11,14 +11,16 @@
 			return self::$db;
 		}
 		public static function initDB(){
-			$credenciales = array(Config::get('db.user'), Config::get('db.pass'), Config::get('db.name'));
-			self::$db = new DB(...$credenciales);
-			print_r(self::$db);
+			//$credenciales = array(Config::get('db.user'), Config::get('db.pass'), Config::get('db.name'));
+			//print_r(...$credenciales);
+			self::$db = new DB(Config::get('db.user'), Config::get('db.pass'), Config::get('db.name'));
+
+			//print_r(self::$db);
 		}
 
 		public static function run($uri){
 			self::$enrutador = new Router($uri);
-			self::initDB();
+			self::$db = self::initDB();
 			$controlador = self::$enrutador->getControlador();
 			$accion = self::$enrutador->getAccion();
 			$params = self::$enrutador->getParams();

@@ -10,4 +10,6 @@
 	define('VIEW_ROOT', ROOT.DS."resources".DS);
 
 	require(ROOT.DS."src".DS."init.php");
+	echo ModelNoticia::getAll();
+	
  ?>
