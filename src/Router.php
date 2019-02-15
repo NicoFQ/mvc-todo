@@ -31,6 +31,8 @@
 			$this->uri = $uri;
 			if ($uri == "/") {
 				$this->redirect(Config::get('ruta.defecto'));
+				//$this->uri = 'login/view';
+				
 			}
 			$urlProcesada = trim($uri, "/");
 			$urlProcesada = explode('?', $urlProcesada);

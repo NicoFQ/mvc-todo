@@ -6,31 +6,13 @@
 	class ControllerNoticias extends BaseController
 	{
 		public function list(){
-			$this->data = [
-				'noticia1',
-				'noticia2',
-				'noticia3',
-			];
-			//ModelNoticias::getNoticias();
-			//ModelNoticias::getNoticiasPublicadas();
-			//$noticia = ModelNoticias::getById(47);
-			//$noticia = ModelNoticias::getLastByAuthor('Nico');
-			$noticia = new ModelNoticia();
-			$noticia->setTitulo('Lanzamiendo de mi MVC');
-			//$noticia->setAuthor(1);
-			//$noticia->getContent();
-			$noticia->save();
+			$this->data = ModelNoticia::getAll();
 		}
 
 		public function show($id){
-			$datosModelo = [
-				'noticia1',
-				'noticia2',
-				'noticia3',
-			];
-			$this->data['titulo'] = 'algo';
-			$this->data['id'] = $id;
-			$this->data['contenido'] = $datosModelo[$id];
+			$this->data['perfil'] = 'Nico';	
+			$this->data['publicidad'] = 'Mahou es genial!';	
+			$this->data['noticia'] = ModelNoticia::getbyId($id);	
 		}
 	}
 

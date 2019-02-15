@@ -20,7 +20,7 @@
 
 		public static function run($uri){
 			self::$enrutador = new Router($uri);
-			self::$db = self::initDB();
+			self::initDB();
 			$controlador = self::$enrutador->getControlador();
 			$accion = self::$enrutador->getAccion();
 			$params = self::$enrutador->getParams();
