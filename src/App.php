@@ -11,9 +11,11 @@
 			return self::$db;
 		}
 		public static function initDB(){
-			$credenciales = array(Config::get('db.user'), Config::get('db.pass'), Config::get('db.name'));
-			self::$db = new DB(...$credenciales);
-			print_r(self::$db);
+			//$credenciales = array(Config::get('db.user'), Config::get('db.pass'), Config::get('db.name'));
+			//print_r(...$credenciales);
+			self::$db = new DB(Config::get('db.user'), Config::get('db.pass'), Config::get('db.name'));
+
+			//print_r(self::$db);
 		}
 
 		public static function run($uri){
@@ -29,8 +31,7 @@
 			} else{
 				throw new Exception("La accion $accion no exixste;");
 			}
-			echo $salida;
+			//echo $salida;
 		}
 	}
-
  ?>

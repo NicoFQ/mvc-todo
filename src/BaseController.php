@@ -8,9 +8,9 @@ class BaseController
 {
 	protected $data;
 
-	public function __construct()
+	public function __construct(Array $data= [])
 	{
-		$this->data = array();
+		$this->data = $data;
 	}
 
 	public function procesaAccion(string $metodo, $parametros){

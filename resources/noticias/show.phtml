@@ -1,5 +1,8 @@
-<h1>Mostrando la noticia <?=$data['id']?> </h1>
+<h1>Bienvenido <?=$data['perfil'] ?></h1>
 <p>
-	<li><?=$data['contenido']?></li>
-	
+	<?php 
+		print_r($data['noticia'])
+	 ?>
 </p>	
+<span>Publicidad:</span>
+<?=$data['publicidad']?>

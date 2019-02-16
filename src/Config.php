@@ -19,10 +19,6 @@
 			self::$configuracion[$key] = $val;
 		}
 
-		function __construct()
-		{
-			# code...
-		}
 	}
 	
 
