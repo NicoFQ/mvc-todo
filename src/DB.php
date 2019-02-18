@@ -32,7 +32,7 @@
 	        	return null;
 	        } else {
 	        	$resultado = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
-	        	print_r($resultado);
+	        	return $resultado;
 	        }
 		}  catch (PDOException $e) {
         	echo "Error";

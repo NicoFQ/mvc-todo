@@ -1,0 +1,31 @@
+<p>
+	<?print_r($data['erroes']) ?>
+</p>
+<form action="#" method="post">
+
+	<p>
+		Titulo: <input type="text" name="titulo" value=" <?=$data['errores']->getTitulo()?> ">
+		<?php 
+		if ($data['errores']->getErrorTitulo()) {
+			echo "<span>".$data['errores']['titulo']."</span>";
+		}
+	 ?>
+	</p>
+	<p>
+		Texto: <textarea name="texto"></textarea>
+	<?php 
+		if ($data['errores']['texto']) {
+			echo "<span>".$data['errores']['texto']."</span>";
+		}
+	 ?>
+	</p>
+	<p>
+		Fecha: <input type="date" name="fecha">
+	<?php 
+		if ($data['errores']['fecha']) {
+			echo "<span>".$data['errores']['fecha']."</span>";
+		}
+	 ?>
+	</p>
+	<input type="submit" name="Enviar">
+</form>

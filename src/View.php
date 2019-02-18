@@ -7,8 +7,12 @@ class View{
 		$enrutador = App::getRouter();
 						// noticias/list.html
 		$this->template = VIEW_ROOT . $enrutador->getControlador().DS.$enrutador->getAccion().'.phtml';
+
 		if (!file_exists($this->template)) {
 			throw new Exception("Template no disponible hoy, vuelva mañana.");
+					echo "<br>";
+		echo $this->template;
+		echo "<br>";
 		}
 	}
 

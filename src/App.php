@@ -31,7 +31,7 @@
 			} else{
 				throw new Exception("La accion $accion no exixste;");
 			}
-			//echo $salida;
+			echo $salida;
 		}
 	}
  ?>

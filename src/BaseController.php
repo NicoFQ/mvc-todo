@@ -18,9 +18,10 @@ class BaseController
 		//print_r($parametros);
 		$this->$metodo(...$parametros);
 		$vista = new View($this->data);
+		echo "BaseController.php";
 		//$salida = "<h1>Salida general</h1>";
 		//$salida .= implode('-', $this->data);
-		return $vista->render($this->data);
+		return $vista->render();
 	}
 }
 

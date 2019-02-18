@@ -33,7 +33,7 @@
 			if ($accion === 'get') {
 				return $this->data[$dato_pedido];
 			}else if ($accion === 'set') {
-				$this->data[$dato_pedido] = $dato[0];
+				return $this->data[$dato_pedido] = $dato;
 			}
 			//return "Hola mundo de las funciones dinámicas.";
 		}
@@ -45,16 +45,12 @@
 			$nombreTabla = strtolower(substr($nombreClase, 5));
 			$camposSelect = implode(',', static::$lista_info);
 
-			$consulta = "select $camposSelect from $nombreTabla;";
+			$consulta = "SELECT $camposSelect FROM $nombreTabla;";
 			$resultado = $db->ejecutar($consulta);
-			echo '<br>';
-			echo '<br>';
-			print_r($resultado);
-			echo '<br>';
-			echo '<br>';
+
 			
 			$resultado = array_map(function($datos) {
-            	$nombre_clase = get_called_class();//Obtendra el nombre de mis hijos
+            	$nombre_clase = get_called_class();
             	return new $nombre_clase($datos);
         	},$resultado);
 
