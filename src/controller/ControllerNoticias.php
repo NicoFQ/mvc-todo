@@ -11,7 +11,7 @@
 
 		public function show($id){
 			$this->data['perfil'] = 'Nico';	
-			$this->data['publicidad'] = 'Mahou es genial!';	
+			$this->data['publicidad'] = 'Apple';	
 			$this->data['noticia'] = ModelNoticia::getbyId($id);	
 		}
 	}

@@ -17,7 +17,7 @@ class BaseController
 		// Esta funcion rellenará los datos;
 		//print_r($parametros);
 		$this->$metodo(...$parametros);
-		$vista = new View();
+		$vista = new View($this->data);
 		//$salida = "<h1>Salida general</h1>";
 		//$salida .= implode('-', $this->data);
 		return $vista->render($this->data);

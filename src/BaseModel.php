@@ -10,7 +10,7 @@
 			$this->db = App::getDB(); 
 			//static::$lista_info = ['id','titulo','texto','fecha'];
 			if (count($data_row) === 0) {
-				$this->data = array_keys(static::$lista_info, null);
+				$this->data = array__fill_keys(static::$lista_info, null);
 			}else{
 				$this->data = array_combine(static::$lista_info, $data_row);
 			}
@@ -47,19 +47,29 @@
 
 			$consulta = "select $camposSelect from $nombreTabla;";
 			$resultado = $db->ejecutar($consulta);
+			echo '<br>';
+			echo '<br>';
+			print_r($resultado);
+			echo '<br>';
+			echo '<br>';
 			
-			return new $resultado[0];
+			$resultado = array_map(function($datos) {
+            	$nombre_clase = get_called_class();//Obtendra el nombre de mis hijos
+            	return new $nombre_clase($datos);
+        	},$resultado);
+
+       	 	return $resultado;	
 		}
 		public static function getById($id){
 			$db = App::getDB();
-			
+
 			$nombreClase = get_called_class();
 			$nombreTabla = strtolower(substr($nombreClase, 5));
 			$camposSelect = implode(',', static::$lista_info);
 
 			$consulta = "select $camposSelect from $nombreTabla where id = ?;";
 			$resultado = $db->ejecutar($consulta, $id);
-			return new $nombreClase($resultado);
+			return new $nombreClase($resultado[0]);
 		}
 
 
