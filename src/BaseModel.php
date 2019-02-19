@@ -9,10 +9,12 @@
 		function __construct(array $data_row = []) { 
 			$this->db = App::getDB(); 
 			//static::$lista_info = ['id','titulo','texto','fecha'];
-			if (count($data_row) === 0) {
-				$this->data = array__fill_keys(static::$lista_info, null);
+			if (count($data_row) == 0) {
+				$this->data = array_fill_keys(static::$lista_info, null);
+				
 			}else{
 				$this->data = array_combine(static::$lista_info, $data_row);
+				
 			}
 		}
 
@@ -21,7 +23,8 @@
 		}
 
 		/**
-		* setAlgo() setOtraCosa
+		* setAlgo(5) setOtraCosa
+		* $this->unmetodoinventado(1,'asd','p')
 		*/
 		public function __call($nombre, $dato){
 			$dato_pedido = strtolower(substr($nombre ,3));
@@ -33,7 +36,7 @@
 			if ($accion === 'get') {
 				return $this->data[$dato_pedido];
 			}else if ($accion === 'set') {
-				return $this->data[$dato_pedido] = $dato;
+				return $this->data[$dato_pedido] = $dato[0];
 			}
 			//return "Hola mundo de las funciones dinámicas.";
 		}
@@ -71,31 +74,38 @@
 
 		public function save()
 		{
+				
 			$db = App::getDB();
 			$nombreClase = get_called_class();
 			$nombreTabla = strtolower(substr($nombreClase, 5));
 			$camposParaInsert = implode(',', array_slice(static::$lista_info, 1));
 			$parametrosInsert = implode(',', array_fill(0, count(static::$lista_info)-1, '?'));
 
+				App::debug($this->data, "save");
 
 			if ($this->getId() === null) {
-				$sql = "insert into $nombreTabla values($camposParaInser)";
+				$sql = "insert into $nombreTabla($camposParaInsert) values($parametrosInsert)";
 				$resultado = $this->db->ejecutar($sql, ...array_values(array_slice($this->data, 1)));
-				
 				if (is_array($resultado)) {
 					$this->setId($this->db->getLastId());
 					$resultado[] = $this->getId();
 				}
 				return $resultado;			
 			} else{
-				$resultado = $this->db->ejecutar('update noticia set titulo = ?, texto = ?, fecha = ? where $this->titulo,$this->texto,$this->fecha', ...$datos);
+				$id = $this->getId()[0];
+				$sql = "update $nombreTabla set titulo = ?, texto = ?, fecha = ? where id = $id";
+
+				$resultado = $this->db->ejecutar($sql, ...array_values(array_slice($this->data, 1)));
 				
 				if (is_array($resultado)) {
+					$this->setId($this->db->getLastId());
 					$resultado[] = $this->getId();
 				}
-
 				return $resultado;
 			}
+		}
+		public function toArray(){
+			return $this->data;
 		}
 	}
 

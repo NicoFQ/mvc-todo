@@ -14,6 +14,8 @@
 		}elseif (startsWith($nombre_clase, "Model")) {
     	// si comienza por model -> src/model/<nombre>
 			$ruta_a_clase .= 'model'.DS.$nombre_clase;
+		}elseif(startsWith($nombre_clase, "Field")){
+			$ruta_a_clase .= 'field'.DS.$nombre_clase;
 		}else{
 		// si no src/<nombre>
 			$ruta_a_clase .= $nombre_clase;

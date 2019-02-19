@@ -20,15 +20,18 @@
     }
 		
 	public function ejecutar($sql, ...$params) {
+		if (!$this->connection) {
+	        return false;
+	    }
 		try{
-	        if (!$this->connection) {
-	            return false;
-	        }
+	        //print_r($params);
 	        $sentenciaSQL = $this->connection->prepare($sql);
 	        $sentenciaEjecuatada = $sentenciaSQL->execute($params);
 
 	        if(!$sentenciaEjecuatada){
 	        	print_r($this->connection->errorInfo());
+	        	print_r($sentenciaSQL->errorInfo());
+	        	
 	        	return null;
 	        } else {
 	        	$resultado = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);

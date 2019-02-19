@@ -5,6 +5,7 @@
 	 */
 	class ControllerNoticia extends BaseController
 	{
+		protected static $requiere_autentificacion = ['edit','add'];
 		public function list(){
 			$this->data = ModelNoticia::getAll();
 		}
@@ -14,6 +15,7 @@
 			$this->data['publicidad'] = 'Apple';	
 			$this->data['noticia'] = ModelNoticia::getbyId($id);	
 		}
+		/*
 		public function add(){
 			$form = new ModelNoticiaForm($_POST);
 			$this->data['form_manager'] = $form;
@@ -32,6 +34,34 @@
 
 			}
 		}
+*/
+	public function add(){
+        $form = new ModelNoticiaForm($_POST);
+
+        if(count($_POST)>0 && $form->datosValidos()) {
+            $form->guardaInformacion();
+            App::getRouter()::redirect('/noticia/list/');
+        }
+
+        $this->data['form'] = $form->pintar();
+    }
+
+    public function edit($id) {
+
+        if(count($_POST) == 0 ){
+            $n = ModelNoticia::getById($id);
+            $form = new ModelNoticiaForm($n->toArray());
+        } else {
+            $form = new ModelNoticiaForm($_POST);
+        }
+
+        if(count($_POST)>0 && $form->datosValidos()) {
+          $form->guardaInformacion();
+          App::getRouter()::redirect('/noticia/list/');
+        }
+
+        $this->data['form'] = $form->pintar();
+    }
 	}
 
  ?>

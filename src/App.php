@@ -33,5 +33,22 @@
 			}
 			echo $salida;
 		}
+		public static function debug($dato, $seccion){
+			echo "\n";
+			echo "*****************************";
+			echo "\n";
+			echo $seccion;
+			echo "\n";
+			print_r($dato);
+			echo "\n";
+			echo "*****************************";
+			echo "\n";
+			var_dump($dato);
+			echo "\n";
+			echo $seccion;
+			echo "\n";
+			echo "*****************************";
+			echo "\n";
+		}
 	}
  ?>
